@@ -53,6 +53,10 @@ public class MatrixRow {
         return new MatrixRow(result);
     }
 
+    public double getValue(int index) {
+        return values.get(index);
+    }
+
     public int getWidth() {
         return values.size();
     }

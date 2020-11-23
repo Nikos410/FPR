@@ -91,6 +91,11 @@ public class MatrixRowTest {
     }
 
     @Test
+    public void testGetValue() {
+        assertThat(new MatrixRow(47.11, 0d, 410d, 1d).getValue(2)).isEqualTo(410d);
+    }
+
+    @Test
     public void testGetWidth() {
         assertThat(new MatrixRow(47.11, 0d, 410d, 1d).getWidth()).isEqualTo(4);
     }
