@@ -33,27 +33,26 @@ public class MatrixRowTest {
         assertThat(testRow.toString()).isEqualTo(" 47.11 |  410.0 |   42.0");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testToStringWithNull() {
-        final MatrixRow testRow = new MatrixRow(47.11, null, 42d);
-        assertThat(testRow.toString()).isEqualTo(" 47.11 |   null |   42.0");
+        new MatrixRow(47.11, null, 42d);
     }
 
     @Test
     public void testMultiplyByValue() {
-        final MatrixRow testRow = new MatrixRow(47.11, null, 410d);
+        final MatrixRow testRow = new MatrixRow(47.11, 0d, 410d);
         testRow.multiply(2d);
-        assertThat(testRow).isEqualTo(new MatrixRow(94.22, null, 820d));
+        assertThat(testRow).isEqualTo(new MatrixRow(94.22, 0d, 820d));
     }
 
     @Test
     public void testMultiplyByOtherRow() {
-        final MatrixRow row1 = new MatrixRow(47.11, null, 410d, 1d);
-        final MatrixRow row2 = new MatrixRow(2d, 3d, null, 5d);
+        final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
+        final MatrixRow row2 = new MatrixRow(2d, 3d, 0d, 5d);
 
         row1.multiply(row2);
 
-        assertThat(row1).isEqualTo(new MatrixRow(94.22, null, null, 5d));
-        assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, null, 5d));
+        assertThat(row1).isEqualTo(new MatrixRow(94.22, 0d, 0d, 5d));
+        assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, 0d, 5d));
     }
 }

@@ -13,12 +13,16 @@ public class MatrixRow {
     }
 
     public MatrixRow(List<Double> values) {
+        if (values.stream().anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("null values are not allowed.");
+        }
+
         this.values = values;
     }
 
     public void multiply(double by) {
         values = values.stream()
-                .map(value -> multiplyValue(value, by))
+                .map(value -> value * by)
                 .collect(Collectors.toList());
     }
 
@@ -28,16 +32,8 @@ public class MatrixRow {
         }
 
         for (int i = 0; i < values.size(); i++) {
-            final Double result = multiplyValue(values.get(i), by.values.get(i));
+            final Double result = values.get(i) * by.values.get(i);
             values.set(i, result);
-        }
-    }
-
-    private Double multiplyValue(Double value, Double by) {
-        if (value == null || by == null) {
-            return null;
-        } else {
-            return value * by;
         }
     }
 
