@@ -34,6 +34,32 @@ public class MatrixTest {
         assertThat(createTestMatrix().getHeight()).isEqualTo(2);
     }
 
+    @Test
+    public void testEquals() {
+        final Matrix matrix1 = createTestMatrix();
+        final Matrix matrix2 = createTestMatrix();
+        final Matrix matrix3 = createTestMatrix();
+        matrix3.setRow(1, new MatrixRow(1d, 2d, 3d));
+
+        assertThat(matrix1).isEqualTo(matrix2);
+        assertThat(matrix1).isNotEqualTo(matrix3);
+        assertThat(matrix1).isNotEqualTo(null);
+        assertThat(matrix1).isNotEqualTo("Not a MatrixRow");
+        assert matrix1.equals(matrix1);
+    }
+
+    @Test
+    public void testHashCode() {
+        final Matrix matrix1 = createTestMatrix();
+        final Matrix matrix2 = createTestMatrix();
+        final Matrix matrix3 = createTestMatrix();
+        matrix3.setRow(1, new MatrixRow(1d, 2d, 3d));
+
+        assertThat(matrix1.hashCode()).isEqualTo(matrix1.hashCode());
+        assertThat(matrix1.hashCode()).isEqualTo(matrix2.hashCode());
+        assertThat(matrix1.hashCode()).isNotEqualTo(matrix3.hashCode());
+    }
+
     private static Matrix createTestMatrix() {
         final List<MatrixRow> rows = new LinkedList<>();
         rows.add(new MatrixRow(1d, 42d, 410d));
