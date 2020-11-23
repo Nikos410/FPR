@@ -89,4 +89,9 @@ public class MatrixRowTest {
 
         row1.subtract(row2);
     }
+
+    @Test
+    public void testGetWidth() {
+        assertThat(new MatrixRow(47.11, 0d, 410d, 1d).getWidth()).isEqualTo(4);
+    }
 }
