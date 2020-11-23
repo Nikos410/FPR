@@ -10,6 +10,14 @@ public class Matrix {
         this.rows = rows;
     }
 
+    public MatrixRow getRow(int rowIndex) {
+        return rows.get(rowIndex);
+    }
+
+    public void setRow(int rowIndex, MatrixRow row) {
+        rows.set(rowIndex, row);
+    }
+
     @Override
     public String toString() {
         return rows.stream().map(MatrixRow::toString).collect(Collectors.joining("\n"));

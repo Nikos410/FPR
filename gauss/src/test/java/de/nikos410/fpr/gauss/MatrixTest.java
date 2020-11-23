@@ -14,6 +14,21 @@ public class MatrixTest {
         assertThat(createTestMatrix().toString()).isEqualTo("   1.0 |   42.0 |  410.0\n  12.0 |    0.0 |    0.0");
     }
 
+    @Test
+    public void testGetRow() {
+        assertThat(createTestMatrix().getRow(1)).isEqualTo(new MatrixRow(12d, 0d, 0d));
+    }
+
+    @Test
+    public void testSetRow() {
+        final Matrix matrix = createTestMatrix();
+
+        final MatrixRow row = new MatrixRow(0d, 1d, 2d);
+        matrix.setRow(1, row);
+
+        assert matrix.getRow(1) == row;
+    }
+
     private static Matrix createTestMatrix() {
         final List<MatrixRow> rows = new LinkedList<>();
         rows.add(new MatrixRow(1d, 42d, 410d));
