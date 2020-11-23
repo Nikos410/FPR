@@ -1,0 +1,18 @@
+package de.nikos410.fpr.gauss;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+public class MatrixRow {
+    private final List<Double> values;
+
+    public MatrixRow(List<Double> values) {
+        this.values = values;
+    }
+
+    @Override
+    public String toString() {
+        return values.stream().map(Objects::toString).collect(Collectors.joining(" | "));
+    }
+}
