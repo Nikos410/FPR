@@ -38,4 +38,11 @@ public class MatrixRowTest {
         final MatrixRow testRow = new MatrixRow(47.11, null, 42d);
         assertThat(testRow.toString()).isEqualTo(" 47.11 |   null |   42.0");
     }
+
+    @Test
+    public void testMultiplyByValue() {
+        final MatrixRow testRow = new MatrixRow(47.11, null, 410d);
+        testRow.multiply(2d);
+        assertThat(testRow).isEqualTo(new MatrixRow(94.22, null, 820d));
+    }
 }

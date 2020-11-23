@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MatrixRow {
-    private final List<Double> values;
+    private List<Double> values;
 
     public MatrixRow(Double... values) {
         this(Arrays.asList(values));
@@ -14,6 +14,18 @@ public class MatrixRow {
 
     public MatrixRow(List<Double> values) {
         this.values = values;
+    }
+
+    public void multiply(double by) {
+        values = values.stream().map(value -> multiplyValue(value, by)).collect(Collectors.toList());
+    }
+
+    private Double multiplyValue(Double value, double by) {
+        if (value == null) {
+            return null;
+        } else {
+            return value * by;
+        }
     }
 
     @Override
