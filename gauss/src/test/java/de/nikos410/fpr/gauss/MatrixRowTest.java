@@ -69,4 +69,16 @@ public class MatrixRowTest {
 
         row1.multiply(row2);
     }
+
+    @Test
+    public void testSubtraction() {
+        final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
+        final MatrixRow row2 = new MatrixRow(2d, 3d, 0d, 5d);
+
+        final MatrixRow result = row1.subtract(row2);
+
+        assertThat(result).isEqualTo(new MatrixRow(45.11, -3d, 410d, -4d));
+        assertThat(row1).isEqualTo(new MatrixRow(47.11, 0d, 410d, 1d));
+        assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, 0d, 5d));
+    }
 }

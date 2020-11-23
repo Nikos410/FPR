@@ -40,6 +40,19 @@ public class MatrixRow {
         return new MatrixRow(result);
     }
 
+    public MatrixRow subtract(MatrixRow other) {
+        if (values.size() != other.values.size()) {
+            throw new IllegalArgumentException("Rows must have the same length");
+        }
+
+        final List<Double> result = new LinkedList<>();
+        for (int i = 0; i < values.size(); i++) {
+            result.add(values.get(i) - other.values.get(i));
+        }
+
+        return new MatrixRow(result);
+    }
+
     @Override
     public String toString() {
         return values.stream().map(value -> String.format("%1$6s", value)).collect(Collectors.joining(" | "));
