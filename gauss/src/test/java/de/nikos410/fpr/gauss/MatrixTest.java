@@ -30,11 +30,6 @@ public class MatrixTest {
     }
 
     @Test
-    public void testGetWidth() {
-        assertThat(createTestMatrix().getWidth()).isEqualTo(3);
-    }
-
-    @Test
     public void testGetHeight() {
         assertThat(createTestMatrix().getHeight()).isEqualTo(2);
     }

@@ -57,10 +57,6 @@ public class MatrixRow {
         return values.get(index);
     }
 
-    public int getWidth() {
-        return values.size();
-    }
-
     @Override
     public String toString() {
         return values.stream().map(value -> String.format("%1$6s", value)).collect(Collectors.joining(" | "));

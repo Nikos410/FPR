@@ -18,10 +18,6 @@ public class Matrix {
         rows.set(rowIndex, row);
     }
 
-    public int getWidth() {
-        return rows.get(0).getWidth();
-    }
-
     public int getHeight() {
         return rows.size();
     }
