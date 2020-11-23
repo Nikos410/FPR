@@ -45,4 +45,15 @@ public class MatrixRowTest {
         testRow.multiply(2d);
         assertThat(testRow).isEqualTo(new MatrixRow(94.22, null, 820d));
     }
+
+    @Test
+    public void testMultiplyByOtherRow() {
+        final MatrixRow row1 = new MatrixRow(47.11, null, 410d, 1d);
+        final MatrixRow row2 = new MatrixRow(2d, 3d, null, 5d);
+
+        row1.multiply(row2);
+
+        assertThat(row1).isEqualTo(new MatrixRow(94.22, null, null, 5d));
+        assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, null, 5d));
+    }
 }

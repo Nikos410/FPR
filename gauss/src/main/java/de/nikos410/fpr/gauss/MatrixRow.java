@@ -17,11 +17,24 @@ public class MatrixRow {
     }
 
     public void multiply(double by) {
-        values = values.stream().map(value -> multiplyValue(value, by)).collect(Collectors.toList());
+        values = values.stream()
+                .map(value -> multiplyValue(value, by))
+                .collect(Collectors.toList());
     }
 
-    private Double multiplyValue(Double value, double by) {
-        if (value == null) {
+    public void multiply(MatrixRow by) {
+        if (values.size() != by.values.size()) {
+            throw new IllegalArgumentException("Rows must have the same length");
+        }
+
+        for (int i = 0; i < values.size(); i++) {
+            final Double result = multiplyValue(values.get(i), by.values.get(i));
+            values.set(i, result);
+        }
+    }
+
+    private Double multiplyValue(Double value, Double by) {
+        if (value == null || by == null) {
             return null;
         } else {
             return value * by;
