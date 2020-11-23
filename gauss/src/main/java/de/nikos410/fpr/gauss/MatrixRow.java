@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class MatrixRow {
     private final List<Double> values;
 
-    public MatrixRow(Double[] values) {
+    public MatrixRow(Double... values) {
         this(Arrays.asList(values));
     }
 
