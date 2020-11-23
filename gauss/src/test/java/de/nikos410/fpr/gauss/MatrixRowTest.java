@@ -81,4 +81,12 @@ public class MatrixRowTest {
         assertThat(row1).isEqualTo(new MatrixRow(47.11, 0d, 410d, 1d));
         assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, 0d, 5d));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSubtractionByOtherRowDifferentLength() {
+        final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
+        final MatrixRow row2 = new MatrixRow(2d, 3d);
+
+        row1.subtract(row2);
+    }
 }
