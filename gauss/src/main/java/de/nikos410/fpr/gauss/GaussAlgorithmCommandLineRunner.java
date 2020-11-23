@@ -22,7 +22,7 @@ public class GaussAlgorithmCommandLineRunner {
         try (final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
              final BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
             while (true) {
-                System.out.print("Enter an row, or press enter if you are done.\n> ");
+                System.out.print("Enter a row, or press enter if you are done.\n> ");
 
                 final String input = bufferedReader.readLine();
                 if (input.isBlank()) {
