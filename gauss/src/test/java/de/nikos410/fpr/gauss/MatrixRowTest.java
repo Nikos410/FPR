@@ -15,6 +15,8 @@ public class MatrixRowTest {
         assertThat(row1).isEqualTo(row2);
         assertThat(row1).isNotEqualTo(row3);
         assertThat(row1).isNotEqualTo(null);
+        assertThat(row1).isNotEqualTo("Not a MatrixRow");
+        assert row1.equals(row1);
     }
 
     @Test
