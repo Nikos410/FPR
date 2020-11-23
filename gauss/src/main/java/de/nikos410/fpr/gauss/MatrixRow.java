@@ -1,12 +1,13 @@
 package de.nikos410.fpr.gauss;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MatrixRow {
-    private List<Double> values;
+    private final List<Double> values;
 
     public MatrixRow(Double... values) {
         this(Arrays.asList(values));
@@ -20,21 +21,23 @@ public class MatrixRow {
         this.values = values;
     }
 
-    public void multiply(double by) {
-        values = values.stream()
+    public MatrixRow multiply(double by) {
+        return new MatrixRow(values.stream()
                 .map(value -> value * by)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    public void multiply(MatrixRow by) {
+    public MatrixRow multiply(MatrixRow by) {
         if (values.size() != by.values.size()) {
             throw new IllegalArgumentException("Rows must have the same length");
         }
 
+        final List<Double> result = new LinkedList<>();
         for (int i = 0; i < values.size(); i++) {
-            final Double result = values.get(i) * by.values.get(i);
-            values.set(i, result);
+            result.add(values.get(i) * by.values.get(i));
         }
+
+        return new MatrixRow(result);
     }
 
     @Override

@@ -43,8 +43,11 @@ public class MatrixRowTest {
     @Test
     public void testMultiplyByValue() {
         final MatrixRow testRow = new MatrixRow(47.11, 0d, 410d);
-        testRow.multiply(2d);
-        assertThat(testRow).isEqualTo(new MatrixRow(94.22, 0d, 820d));
+
+        final MatrixRow result = testRow.multiply(2d);
+
+        assertThat(result).isEqualTo(new MatrixRow(94.22, 0d, 820d));
+        assertThat(testRow).isEqualTo(new MatrixRow(47.11, 0d, 410d));
     }
 
     @Test
@@ -52,9 +55,10 @@ public class MatrixRowTest {
         final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
         final MatrixRow row2 = new MatrixRow(2d, 3d, 0d, 5d);
 
-        row1.multiply(row2);
+        final MatrixRow result = row1.multiply(row2);
 
-        assertThat(row1).isEqualTo(new MatrixRow(94.22, 0d, 0d, 5d));
+        assertThat(result).isEqualTo(new MatrixRow(94.22, 0d, 0d, 5d));
+        assertThat(row1).isEqualTo(new MatrixRow(47.11, 0d, 410d, 1d));
         assertThat(row2).isEqualTo(new MatrixRow(2d, 3d, 0d, 5d));
     }
 
