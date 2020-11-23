@@ -11,7 +11,7 @@ public class MatrixTest {
 
     @Test
     public void testToString() {
-        assertThat(createTestMatrix().toString()).isEqualTo("1.0 | 42.0 | 410.0\n12.0 | null | 0.0");
+        assertThat(createTestMatrix().toString()).isEqualTo("   1.0 |   42.0 |  410.0\n  12.0 |   null |    0.0");
     }
 
     private static Matrix createTestMatrix() {

@@ -9,6 +9,6 @@ public class LinearEquationToMatrixRowParserTest {
     @Test
     public void testParse() {
         final String result = new LinearEquationToMatrixRowParser("1x + 2y = 3").parse().toString();
-        assertThat(result).isEqualTo("1.0 | 2.0 | 3.0");
+        assertThat(result).isEqualTo("   1.0 |    2.0 |    3.0");
     }
 }

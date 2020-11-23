@@ -18,6 +18,6 @@ public class MatrixRow {
 
     @Override
     public String toString() {
-        return values.stream().map(Objects::toString).collect(Collectors.joining(" | "));
+        return values.stream().map(value -> String.format("%1$6s", value)).collect(Collectors.joining(" | "));
     }
 }
