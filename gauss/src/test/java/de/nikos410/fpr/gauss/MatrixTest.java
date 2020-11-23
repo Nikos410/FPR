@@ -29,6 +29,16 @@ public class MatrixTest {
         assert matrix.getRow(1) == row;
     }
 
+    @Test
+    public void testGetWidth() {
+        assertThat(createTestMatrix().getWidth()).isEqualTo(3);
+    }
+
+    @Test
+    public void testGetHeight() {
+        assertThat(createTestMatrix().getHeight()).isEqualTo(2);
+    }
+
     private static Matrix createTestMatrix() {
         final List<MatrixRow> rows = new LinkedList<>();
         rows.add(new MatrixRow(1d, 42d, 410d));
