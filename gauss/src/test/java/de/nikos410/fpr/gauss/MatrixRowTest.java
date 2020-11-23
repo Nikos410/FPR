@@ -41,7 +41,7 @@ public class MatrixRowTest {
     }
 
     @Test
-    public void testMultiplyByValue() {
+    public void testMultiplicationByValue() {
         final MatrixRow testRow = new MatrixRow(47.11, 0d, 410d);
 
         final MatrixRow result = testRow.multiply(2d);
@@ -51,7 +51,7 @@ public class MatrixRowTest {
     }
 
     @Test
-    public void testMultiplyByOtherRow() {
+    public void testMultiplicationByOtherRow() {
         final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
         final MatrixRow row2 = new MatrixRow(2d, 3d, 0d, 5d);
 
@@ -63,7 +63,7 @@ public class MatrixRowTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMultiplyByOtherRowDifferentLength() {
+    public void testMultiplicationByOtherRowDifferentLength() {
         final MatrixRow row1 = new MatrixRow(47.11, 0d, 410d, 1d);
         final MatrixRow row2 = new MatrixRow(2d, 3d);
 
