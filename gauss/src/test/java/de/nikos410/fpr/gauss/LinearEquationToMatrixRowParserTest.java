@@ -8,7 +8,7 @@ public class LinearEquationToMatrixRowParserTest {
 
     @Test
     public void testParse() {
-        final String result = new LinearEquationToMatrixRowParser("1x + 2y = 3").parse().toString();
-        assertThat(result).isEqualTo("   1.0 |    2.0 |    3.0");
+        final MatrixRow result = new LinearEquationToMatrixRowParser("1x + 2y = 3").parse();
+        assertThat(result).isEqualTo(new MatrixRow(1d, 2d, 3d));
     }
 }
