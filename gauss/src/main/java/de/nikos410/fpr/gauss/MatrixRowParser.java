@@ -13,7 +13,8 @@ public class MatrixRowParser {
     }
 
     public MatrixRow parse() {
-        final List<Double> matrixRowValues = Arrays.stream(input.split("\\s"))
+        final List<Double> matrixRowValues = Arrays.stream(input.split("\\s+"))
+                .filter(e -> !e.isBlank())
                 .map(Double::valueOf)
                 .collect(Collectors.toList());
 
