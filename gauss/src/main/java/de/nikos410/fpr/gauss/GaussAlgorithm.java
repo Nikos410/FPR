@@ -10,10 +10,24 @@ public class GaussAlgorithm {
 
     public Matrix eliminate() {
         for (int step = 0; step < matrix.getHeight() - 1; step++) {
+            pivotStep(step);
             eliminateStep(step);
         }
 
         return matrix;
+    }
+
+    private void pivotStep(int step) {
+        int rowWithBiggestValueInStepColumn = step;
+        for (int i = step + 1; i < matrix.getHeight(); i++) {
+            if (matrix.getRow(i).getValue(step) > matrix.getRow(rowWithBiggestValueInStepColumn).getValue(step)) {
+                rowWithBiggestValueInStepColumn = i;
+            }
+        }
+
+        final MatrixRow temp = matrix.getRow(step);
+        matrix.setRow(step, matrix.getRow(rowWithBiggestValueInStepColumn));
+        matrix.setRow(rowWithBiggestValueInStepColumn, temp);
     }
 
     private void eliminateStep(int step) {
