@@ -10,15 +10,16 @@ public class GaussAlgorithm {
 
     public Matrix eliminate() {
         for (int step = 0; step < matrix.getHeight() - 1; step++) {
-            eliminate(step);
+            eliminateStep(step);
         }
 
         return matrix;
     }
 
-    private void eliminate(int step) {
+    private void eliminateStep(int step) {
+        final MatrixRow stepRow = matrix.getRow(step);
+
         for (int currentRowIndex = step + 1; currentRowIndex < matrix.getHeight(); currentRowIndex++) {
-            final MatrixRow stepRow = matrix.getRow(step);
             final MatrixRow currentRow = matrix.getRow(currentRowIndex);
 
             final double ratio = currentRow.getValue(step) / stepRow.getValue(step);
