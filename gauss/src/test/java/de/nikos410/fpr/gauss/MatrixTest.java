@@ -2,7 +2,7 @@ package de.nikos410.fpr.gauss;
 
 import org.junit.Test;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,12 +21,12 @@ public class MatrixTest {
 
     @Test
     public void testSetRow() {
-        final Matrix matrix = createTestMatrix();
+        final Matrix initialMatrix = createTestMatrix();
 
         final MatrixRow row = new MatrixRow(0d, 1d, 2d);
-        matrix.setRow(1, row);
 
-        assert matrix.getRow(1) == row;
+        final Matrix updatedMatrix = initialMatrix.setRow(1, row);
+        assert updatedMatrix.getRow(1) == row;
     }
 
     @Test
@@ -38,8 +38,7 @@ public class MatrixTest {
     public void testEquals() {
         final Matrix matrix1 = createTestMatrix();
         final Matrix matrix2 = createTestMatrix();
-        final Matrix matrix3 = createTestMatrix();
-        matrix3.setRow(1, new MatrixRow(1d, 2d, 3d));
+        final Matrix matrix3 = matrix2.setRow(1, new MatrixRow(1d, 2d, 3d));
 
         assertThat(matrix1).isEqualTo(matrix2);
         assertThat(matrix1).isNotEqualTo(matrix3);
@@ -52,8 +51,7 @@ public class MatrixTest {
     public void testHashCode() {
         final Matrix matrix1 = createTestMatrix();
         final Matrix matrix2 = createTestMatrix();
-        final Matrix matrix3 = createTestMatrix();
-        matrix3.setRow(1, new MatrixRow(1d, 2d, 3d));
+        final Matrix matrix3 = matrix2.setRow(1, new MatrixRow(1d, 2d, 3d));
 
         assertThat(matrix1.hashCode()).isEqualTo(matrix1.hashCode());
         assertThat(matrix1.hashCode()).isEqualTo(matrix2.hashCode());
@@ -61,7 +59,7 @@ public class MatrixTest {
     }
 
     private static Matrix createTestMatrix() {
-        final List<MatrixRow> rows = new LinkedList<>();
+        final List<MatrixRow> rows = new ArrayList<>();
         rows.add(new MatrixRow(1d, 42d, 410d));
         rows.add(new MatrixRow(12d, 0d, 0d));
         return new Matrix(rows);

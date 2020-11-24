@@ -2,7 +2,7 @@ package de.nikos410.fpr.gauss;
 
 
 public class GaussAlgorithm {
-    private final Matrix matrix;
+    private Matrix matrix;
 
     public GaussAlgorithm(Matrix matrix) {
         this.matrix = matrix;
@@ -25,9 +25,7 @@ public class GaussAlgorithm {
             }
         }
 
-        final MatrixRow temp = matrix.getRow(step);
-        matrix.setRow(step, matrix.getRow(rowToSwap));
-        matrix.setRow(rowToSwap, temp);
+        matrix = matrix.swapRows(step, rowToSwap);
     }
 
     private void eliminateStep(int step) {
@@ -39,7 +37,7 @@ public class GaussAlgorithm {
             final double ratio = currentRow.getValue(step) / stepRow.getValue(step);
             final MatrixRow newRow = currentRow.subtract(stepRow.multiply(ratio));
 
-            matrix.setRow(currentRowIndex, newRow);
+            matrix = matrix.setRow(currentRowIndex, newRow);
         }
     }
 

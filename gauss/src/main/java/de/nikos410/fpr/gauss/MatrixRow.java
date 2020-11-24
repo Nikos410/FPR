@@ -18,7 +18,7 @@ public class MatrixRow {
             throw new IllegalArgumentException("null values are not allowed.");
         }
 
-        this.values = values;
+        this.values = new LinkedList<>(values);
     }
 
     public MatrixRow multiply(double by) {
