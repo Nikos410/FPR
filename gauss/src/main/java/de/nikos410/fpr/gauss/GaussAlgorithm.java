@@ -18,16 +18,16 @@ public class GaussAlgorithm {
     }
 
     private void pivotStep(int step) {
-        int rowWithBiggestValueInStepColumn = step;
+        int rowToSwap = step;
         for (int i = step + 1; i < matrix.getHeight(); i++) {
-            if (matrix.getRow(i).getValue(step) > matrix.getRow(rowWithBiggestValueInStepColumn).getValue(step)) {
-                rowWithBiggestValueInStepColumn = i;
+            if (matrix.getRow(i).getValue(step) > matrix.getRow(rowToSwap).getValue(step)) {
+                rowToSwap = i;
             }
         }
 
         final MatrixRow temp = matrix.getRow(step);
-        matrix.setRow(step, matrix.getRow(rowWithBiggestValueInStepColumn));
-        matrix.setRow(rowWithBiggestValueInStepColumn, temp);
+        matrix.setRow(step, matrix.getRow(rowToSwap));
+        matrix.setRow(rowToSwap, temp);
     }
 
     private void eliminateStep(int step) {
