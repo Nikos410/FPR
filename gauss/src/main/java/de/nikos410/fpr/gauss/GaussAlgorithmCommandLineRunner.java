@@ -33,7 +33,7 @@ public class GaussAlgorithmCommandLineRunner {
                     return new Matrix(rows);
                 }
 
-                rows.add(new MatrixRowParser(input).parse());
+                rows.add(MatrixRowParser.parse(input));
                 System.out.println(rows.stream().map(MatrixRow::toString).collect(Collectors.joining("\n")));
             }
         } catch (IOException e) {

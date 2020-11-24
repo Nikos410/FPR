@@ -6,13 +6,7 @@ import java.util.stream.Collectors;
 
 public class MatrixRowParser {
 
-    private final String input;
-
-    public MatrixRowParser(String input) {
-        this.input = input;
-    }
-
-    public MatrixRow parse() {
+    public static MatrixRow parse(String input) {
         final List<Double> matrixRowValues = Arrays.stream(input.split("\\s+"))
                 .filter(e -> !e.isBlank())
                 .map(Double::valueOf)
