@@ -11,8 +11,11 @@ public class GaussAlgorithmCommandLineRunner {
     public static void main(String[] args) {
         final Matrix initialMatrix = readInputMatrix();
 
-        final Matrix resultMatrix = GaussAlgorithm.eliminate(initialMatrix);
-        System.out.println("Matrix after elimination:\n" + resultMatrix);
+        final Matrix eleminatedMatrix = GaussAlgorithm.eliminate(initialMatrix);
+        System.out.println("Matrix after elimination:\n" + eleminatedMatrix);
+
+        final List<Double> result = GaussAlgorithm.getResults(eleminatedMatrix);
+        System.out.println("\nResult:\n" + result);
     }
 
     private static Matrix readInputMatrix() {

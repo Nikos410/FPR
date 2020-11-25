@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GaussAlgorithmTest {
 
@@ -28,4 +29,21 @@ public class GaussAlgorithmTest {
         inputRows.add(new MatrixRow(0d, 0d, 0.6666666666666667, 2d));
         return new Matrix(inputRows);
     }
+
+    @Test
+    public void testGetResults() {
+        final Matrix inputMatrix = createInputMatrixForTestGetResults();
+        final Matrix eliminatedMatrix = GaussAlgorithm.eliminate(inputMatrix);
+        final List<Long> results = GaussAlgorithm.getResults(eliminatedMatrix).stream().map(Math::round).collect(Collectors.toList());
+        Assertions.assertThat(results).isEqualTo(List.of(5L, -6L, 3L));
+    }
+
+    private static Matrix createInputMatrixForTestGetResults() {
+        final List<MatrixRow> inputRows = new ArrayList<>();
+        inputRows.add(new MatrixRow(1d, 2d, 3d, 2d));
+        inputRows.add(new MatrixRow(1d, 1d, 1d, 2d));
+        inputRows.add(new MatrixRow(3d, 3d, 1d, 0d));
+        return new Matrix(inputRows);
+    }
+
 }
