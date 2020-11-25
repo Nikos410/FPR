@@ -9,11 +9,9 @@ import java.util.stream.Collectors;
 
 public class GaussAlgorithmCommandLineRunner {
     public static void main(String[] args) {
-        final Matrix inputMatrix = readInputMatrix();
+        final Matrix initialMatrix = readInputMatrix();
 
-        final GaussAlgorithm gaussAlgorithm = new GaussAlgorithm(inputMatrix);
-        final Matrix resultMatrix = gaussAlgorithm.eliminate();
-
+        final Matrix resultMatrix = GaussAlgorithm.eliminate(initialMatrix);
         System.out.println("Matrix after elimination:\n" + resultMatrix);
     }
 

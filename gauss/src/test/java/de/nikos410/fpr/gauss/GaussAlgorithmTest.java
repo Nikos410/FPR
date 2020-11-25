@@ -10,11 +10,10 @@ public class GaussAlgorithmTest {
 
     @Test
     public void testElimination() {
-        final GaussAlgorithm gaussAlgorithm = new GaussAlgorithm(createInputMAtrix());
-        Assertions.assertThat(gaussAlgorithm.eliminate()).isEqualTo(createExpectedResultMatrix());
+        Assertions.assertThat(GaussAlgorithm.eliminate(createInputMatrix())).isEqualTo(createExpectedResultMatrix());
     }
 
-    private static Matrix createInputMAtrix() {
+    private static Matrix createInputMatrix() {
         final List<MatrixRow> inputRows = new ArrayList<>();
         inputRows.add(new MatrixRow(0d, 2d, 3d, 4d));
         inputRows.add(new MatrixRow(1d, 1d, 1d, 2d));
