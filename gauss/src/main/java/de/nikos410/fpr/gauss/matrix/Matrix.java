@@ -1,4 +1,4 @@
-package de.nikos410.fpr.gauss;
+package de.nikos410.fpr.gauss.matrix;
 
 import java.util.ArrayList;
 import java.util.List;

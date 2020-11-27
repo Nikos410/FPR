@@ -1,5 +1,6 @@
-package de.nikos410.fpr.gauss;
+package de.nikos410.fpr.gauss.matrix;
 
+import de.nikos410.fpr.gauss.matrix.MatrixRow;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

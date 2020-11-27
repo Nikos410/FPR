@@ -4,7 +4,7 @@
     <module name="gauss" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="de.nikos410.fpr.gauss.*" />
+        <option name="PATTERN" value="de.nikos410.fpr.gauss.matrix.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

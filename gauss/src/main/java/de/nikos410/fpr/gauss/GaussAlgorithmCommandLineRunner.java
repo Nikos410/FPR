@@ -1,11 +1,14 @@
 package de.nikos410.fpr.gauss;
 
+import de.nikos410.fpr.gauss.matrix.Matrix;
+import de.nikos410.fpr.gauss.matrix.MatrixRow;
+import de.nikos410.fpr.gauss.matrix.MatrixRowParser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GaussAlgorithmCommandLineRunner {
     public static void main(String[] args) {

@@ -1,6 +1,8 @@
 package de.nikos410.fpr.gauss;
 
-import org.assertj.core.api.Assertions;
+import de.nikos410.fpr.gauss.exception.NoResultException;
+import de.nikos410.fpr.gauss.matrix.Matrix;
+import de.nikos410.fpr.gauss.matrix.MatrixRow;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -54,5 +56,18 @@ public class GaussAlgorithmTest {
         final List<Long> roundedResults = results.stream().map(Math::round).collect(Collectors.toList());
 
         assertThat(roundedResults).isEqualTo(List.of(1L, -2L, 3L));
+    }
+
+    @Test(expected = NoResultException.class)
+    public void testThrowIfNoResult() {
+        GaussAlgorithm.solve(createInputMatrixWithNoResult());
+    }
+
+    private static Matrix createInputMatrixWithNoResult() {
+        final List<MatrixRow> inputRows = new ArrayList<>();
+        inputRows.add(new MatrixRow(0d, 3d, 1d, 0d));
+        inputRows.add(new MatrixRow(0d, 1d, 3d, 2d));
+        inputRows.add(new MatrixRow(0d, 9d, 2d, 2d));
+        return new Matrix(inputRows);
     }
 }

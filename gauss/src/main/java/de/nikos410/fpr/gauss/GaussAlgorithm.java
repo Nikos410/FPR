@@ -1,6 +1,10 @@
 package de.nikos410.fpr.gauss;
 
 
+import de.nikos410.fpr.gauss.exception.NoResultException;
+import de.nikos410.fpr.gauss.matrix.Matrix;
+import de.nikos410.fpr.gauss.matrix.MatrixRow;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +16,6 @@ public class GaussAlgorithm {
 
     public static List<Double> solve(Matrix initialMatrix) {
         final Matrix eliminatedMatrix = eliminate(initialMatrix);
-        // TODO: Check if matrix is solvable
         return getResults(eliminatedMatrix);
     }
 
@@ -60,12 +63,13 @@ public class GaussAlgorithm {
         return getResults(matrix, 0);
     }
 
-
     private static List<Double> getResults(Matrix matrix, int step) {
         final int matrixHeight = matrix.getHeight();
         if (step >= matrixHeight) {
             return Collections.emptyList();
         }
+
+        requireSolvable(matrix, step);
 
         final MatrixRow currentRow = matrix.getRow(step);
         final List<Double> resultsBelow = getResults(matrix, step + 1);
@@ -83,5 +87,11 @@ public class GaussAlgorithm {
         results.add(result);
         results.addAll(resultsBelow);
         return results;
+    }
+
+    private static void requireSolvable(Matrix matrix, int rowIndex) {
+        if (matrix.getRow(rowIndex).getValue(rowIndex) == 0d) {
+            throw new NoResultException();
+        }
     }
 }

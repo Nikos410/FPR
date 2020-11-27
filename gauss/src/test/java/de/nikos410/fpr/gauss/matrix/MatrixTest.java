@@ -1,5 +1,7 @@
-package de.nikos410.fpr.gauss;
+package de.nikos410.fpr.gauss.matrix;
 
+import de.nikos410.fpr.gauss.matrix.Matrix;
+import de.nikos410.fpr.gauss.matrix.MatrixRow;
 import org.junit.Test;
 
 import java.util.ArrayList;
