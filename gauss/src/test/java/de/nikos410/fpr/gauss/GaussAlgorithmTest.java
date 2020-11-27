@@ -1,6 +1,6 @@
 package de.nikos410.fpr.gauss;
 
-import de.nikos410.fpr.gauss.exception.NoResultException;
+import de.nikos410.fpr.gauss.exception.NoSolutionException;
 import de.nikos410.fpr.gauss.matrix.Matrix;
 import de.nikos410.fpr.gauss.matrix.MatrixRow;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class GaussAlgorithmTest {
         assertThat(roundedResults).isEqualTo(List.of(1L, -2L, 3L));
     }
 
-    @Test(expected = NoResultException.class)
+    @Test(expected = NoSolutionException.class)
     public void testThrowIfNoResult() {
         GaussAlgorithm.solve(createInputMatrixWithNoResult());
     }

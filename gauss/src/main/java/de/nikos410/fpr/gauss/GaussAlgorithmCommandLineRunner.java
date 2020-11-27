@@ -10,6 +10,11 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A small utility class to provide a simple command-line UI to use {@link GaussAlgorithm}.
+ *
+ * @author Nikos Epping
+ */
 public class GaussAlgorithmCommandLineRunner {
     public static void main(String[] args) {
         final Matrix initialMatrix = readInputMatrix();

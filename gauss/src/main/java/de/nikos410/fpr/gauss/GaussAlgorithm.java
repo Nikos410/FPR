@@ -1,7 +1,7 @@
 package de.nikos410.fpr.gauss;
 
 
-import de.nikos410.fpr.gauss.exception.NoResultException;
+import de.nikos410.fpr.gauss.exception.NoSolutionException;
 import de.nikos410.fpr.gauss.matrix.Matrix;
 import de.nikos410.fpr.gauss.matrix.MatrixRow;
 
@@ -9,11 +9,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * An implementation of the Gauss elimination algorithm with column pivoting.
+ * This algorithm can be used to solve a set of linear equations.
+ *
+ * @author Nikos Epping
+ */
 public class GaussAlgorithm {
 
     private GaussAlgorithm() {
     }
 
+    /**
+     * Applies the Gauss elimination and performs re-substitution to find the results for every unknown variable.
+     *
+     * @param initialMatrix A matrix representing a set of linear equations.
+     * @return A list containing the results for every unknown variable.
+     */
     public static List<Double> solve(Matrix initialMatrix) {
         final Matrix eliminatedMatrix = eliminate(initialMatrix);
         return getResults(eliminatedMatrix);
@@ -91,7 +103,7 @@ public class GaussAlgorithm {
 
     private static void requireSolvable(Matrix matrix, int rowIndex) {
         if (matrix.getRow(rowIndex).getValue(rowIndex) == 0d) {
-            throw new NoResultException();
+            throw new NoSolutionException();
         }
     }
 }
