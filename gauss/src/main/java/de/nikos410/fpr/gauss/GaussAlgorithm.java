@@ -10,7 +10,13 @@ public class GaussAlgorithm {
     private GaussAlgorithm() {
     }
 
-    public static Matrix eliminate(Matrix initialMatrix) {
+    public static List<Double> solve(Matrix initialMatrix) {
+        final Matrix eliminatedMatrix = eliminate(initialMatrix);
+        // TODO: Check if matrix is solvable
+        return getResults(eliminatedMatrix);
+    }
+
+    static Matrix eliminate(Matrix initialMatrix) {
         // TODO: This looks like it could be done cleaner recursively
         Matrix currentMatrix = initialMatrix;
 
@@ -50,7 +56,7 @@ public class GaussAlgorithm {
         return currentMatrix;
     }
 
-    public static List<Double> getResults(Matrix matrix) {
+    static List<Double> getResults(Matrix matrix) {
         return getResults(matrix, 0);
     }
 

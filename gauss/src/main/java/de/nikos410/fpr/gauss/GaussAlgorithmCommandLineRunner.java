@@ -11,10 +11,8 @@ public class GaussAlgorithmCommandLineRunner {
     public static void main(String[] args) {
         final Matrix initialMatrix = readInputMatrix();
 
-        final Matrix eleminatedMatrix = GaussAlgorithm.eliminate(initialMatrix);
-        System.out.println("Matrix after elimination:\n" + eleminatedMatrix);
+        final List<Double> result = GaussAlgorithm.solve(initialMatrix);
 
-        final List<Double> result = GaussAlgorithm.getResults(eleminatedMatrix);
         System.out.println("\nResult:\n" + result);
     }
 
@@ -35,7 +33,7 @@ public class GaussAlgorithmCommandLineRunner {
                 }
 
                 rows.add(MatrixRowParser.parse(input));
-                System.out.println(rows.stream().map(MatrixRow::toString).collect(Collectors.joining("\n")));
+                System.out.println(new Matrix(rows));
             }
         } catch (IOException e) {
             throw new IllegalStateException(e);

@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class GaussAlgorithmTest {
 
     @Test
     public void testElimination() {
-        Assertions.assertThat(GaussAlgorithm.eliminate(createInputMatrix())).isEqualTo(createExpectedResultMatrix());
+        assertThat(GaussAlgorithm.eliminate(createInputMatrix())).isEqualTo(createExpectedResultMatrix());
     }
 
     private static Matrix createInputMatrix() {
@@ -35,7 +37,7 @@ public class GaussAlgorithmTest {
         final List<Double> results = GaussAlgorithm.getResults(createEliminatedMatrixForGettingResults());
         final List<Long> roundedResults = results.stream().map(Math::round).collect(Collectors.toList());
 
-        Assertions.assertThat(roundedResults).isEqualTo(List.of(5L, -6L, 3L));
+        assertThat(roundedResults).isEqualTo(List.of(5L, -6L, 3L));
     }
 
     private static Matrix createEliminatedMatrixForGettingResults() {
@@ -46,4 +48,11 @@ public class GaussAlgorithmTest {
         return new Matrix(inputRows);
     }
 
+    @Test
+    public void testSolve() {
+        final List<Double> results = GaussAlgorithm.solve(createInputMatrix());
+        final List<Long> roundedResults = results.stream().map(Math::round).collect(Collectors.toList());
+
+        assertThat(roundedResults).isEqualTo(List.of(1L, -2L, 3L));
+    }
 }
