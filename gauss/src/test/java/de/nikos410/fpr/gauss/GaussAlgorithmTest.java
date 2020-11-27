@@ -32,17 +32,17 @@ public class GaussAlgorithmTest {
 
     @Test
     public void testGetResults() {
-        final Matrix inputMatrix = createInputMatrixForTestGetResults();
-        final Matrix eliminatedMatrix = GaussAlgorithm.eliminate(inputMatrix);
-        final List<Long> results = GaussAlgorithm.getResults(eliminatedMatrix).stream().map(Math::round).collect(Collectors.toList());
-        Assertions.assertThat(results).isEqualTo(List.of(5L, -6L, 3L));
+        final List<Double> results = GaussAlgorithm.getResults(createEliminatedMatrixForGettingResults());
+        final List<Long> roundedResults = results.stream().map(Math::round).collect(Collectors.toList());
+
+        Assertions.assertThat(roundedResults).isEqualTo(List.of(5L, -6L, 3L));
     }
 
-    private static Matrix createInputMatrixForTestGetResults() {
+    private static Matrix createEliminatedMatrixForGettingResults() {
         final List<MatrixRow> inputRows = new ArrayList<>();
-        inputRows.add(new MatrixRow(1d, 2d, 3d, 2d));
-        inputRows.add(new MatrixRow(1d, 1d, 1d, 2d));
         inputRows.add(new MatrixRow(3d, 3d, 1d, 0d));
+        inputRows.add(new MatrixRow(0d, 1d, 8d / 3d, 2d));
+        inputRows.add(new MatrixRow(0d, 0d, 2d / 3d, 2d));
         return new Matrix(inputRows);
     }
 
