@@ -12,7 +12,7 @@ public interface EmployeeRepository {
 
     List<Employee> findDuplicates();
 
-    void save(Employee employee);
+    void save(Employee toSave);
 
     boolean delete(Employee employee);
 }

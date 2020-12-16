@@ -35,13 +35,16 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public void save(Employee employee) {
-        final int existingIndex = employees.indexOf(employee);
+    public void save(Employee toSave) {
+        final Optional<Employee> existingEmployee = employees.stream()
+                .filter(e -> e.staffId == toSave.staffId)
+                .findFirst();
 
-        if (existingIndex >= 0) {
-            employees.set(existingIndex, employee);
+        if (existingEmployee.isPresent()) {
+            final int existingEmployeeIndex = employees.indexOf(existingEmployee.get());
+            employees.set(existingEmployeeIndex, toSave);
         } else {
-            employees.add(employee);
+            employees.add(toSave);
         }
     }
 
