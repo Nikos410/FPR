@@ -1,18 +1,10 @@
 package de.nikos410.fpr.employeemanagement.personal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class InMemoryEmployeeRepository implements EmployeeRepository {
     private final List<Employee> employees = new ArrayList<>();
-
-    @Override
-    public Optional<Employee> findByStaffId(long staffId) {
-        return employees.stream()
-                .filter(employee -> staffId == employee.getStaffId())
-                .findFirst();
-    }
 
     @Override
     public List<Employee> findAll() {
@@ -20,23 +12,37 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
+    public Employee findByHighestSalary() {
+        return employees.stream()
+                .max(Comparator.comparing(Employee::calculateSalary))
+                .orElseThrow(() -> new IllegalStateException("No employees known."));
+    }
+
+    @Override
+    public Employee findByLowestSalary() {
+        return employees.stream()
+                .min(Comparator.comparing(Employee::calculateSalary))
+                .orElseThrow(() -> new IllegalStateException("No employees known."));
+    }
+
+    @Override
+    public List<Employee> findDuplicates() {
+        final Set<Employee> tempSet = new HashSet<>();
+
+        return employees.stream()
+                .filter(e -> !tempSet.add(e))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void save(Employee employee) {
-        final Optional<Employee> existingEmployee = findByStaffId(employee.getStaffId());
+        final int existingIndex = employees.indexOf(employee);
 
-        if (existingEmployee.isPresent()) {
-            saveExistingEmployee(employee);
+        if (existingIndex >= 0) {
+            employees.set(existingIndex, employee);
         } else {
-            saveNewEmployee(employee);
+            employees.add(employee);
         }
-    }
-
-    private void saveExistingEmployee(Employee employee) {
-        final var existingEmployeeIndex = employees.indexOf(employee);
-        employees.set(existingEmployeeIndex, employee);
-    }
-
-    private void saveNewEmployee(Employee employee) {
-        employees.add(employee);
     }
 
     @Override

@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeRepository {
-    Optional<Employee> findByStaffId(long id);
-
     List<Employee> findAll();
+
+    Employee findByHighestSalary();
+
+    Employee findByLowestSalary();
+
+    List<Employee> findDuplicates();
 
     void save(Employee employee);
 
