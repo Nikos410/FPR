@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee extends AbstractPerson {
-    private BigDecimal salary;
-    private LocalDate hireDate;
-    private long staffId;
+    protected BigDecimal salary;
+    protected LocalDate hireDate;
+    protected long staffId;
 
     public Employee(String firstName, String lastName, BigDecimal salary, LocalDate hireDate, long staffId) {
         super(firstName, lastName);
@@ -18,39 +18,16 @@ public class Employee extends AbstractPerson {
     }
 
     public BigDecimal increaseSalary(BigDecimal byPercent) {
-        final BigDecimal currentSalary = getSalary();
-
-        final BigDecimal difference = currentSalary
+        final BigDecimal difference = salary
                 .divide(BigDecimal.valueOf(100), RoundingMode.HALF_UP)
                 .multiply(byPercent);
 
-        final BigDecimal newSalary = currentSalary.add(difference);
-        this.setSalary(newSalary);
-        return newSalary;
+        this.salary = salary.add(difference);
+        return calculateSalary();
     }
 
-    public BigDecimal getSalary() {
+    public BigDecimal calculateSalary() {
         return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public long getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(long staffId) {
-        this.staffId = staffId;
     }
 
     @Override
@@ -76,11 +53,11 @@ public class Employee extends AbstractPerson {
     @Override
     public String toString() {
         return "Employee{" +
-                "firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", salary=" + getSalary() +
-                ", hireDate=" + getHireDate() +
-                ", staffId=" + getStaffId() +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", hireDate=" + hireDate +
+                ", staffId=" + staffId +
                 '}';
     }
 }

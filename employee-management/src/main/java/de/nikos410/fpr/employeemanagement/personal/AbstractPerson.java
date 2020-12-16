@@ -3,27 +3,11 @@ package de.nikos410.fpr.employeemanagement.personal;
 import java.util.Objects;
 
 public abstract class AbstractPerson {
-    private String firstName;
-    private String lastName;
+    protected String firstName;
+    protected String lastName;
 
     public AbstractPerson(String firstName, String lastName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -47,8 +31,8 @@ public abstract class AbstractPerson {
     @Override
     public String toString() {
         return "AbstractPerson{" +
-                "firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

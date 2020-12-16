@@ -5,19 +5,21 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Manager extends Employee {
-    private BigDecimal bonus;
+    protected BigDecimal bonus;
 
     public Manager(String firstName, String lastName, BigDecimal salary, LocalDate hireDate, long staffId, BigDecimal bonus) {
         super(firstName, lastName, salary, hireDate, staffId);
         this.bonus = bonus;
     }
 
-    public BigDecimal getBonus() {
-        return bonus;
+    public BigDecimal setBonus(BigDecimal bonus) {
+        this.bonus = bonus;
+        return calculateSalary();
     }
 
-    public void setBonus(BigDecimal bonus) {
-        this.bonus = bonus;
+    @Override
+    public BigDecimal calculateSalary() {
+        return super.calculateSalary().add(bonus);
     }
 
     @Override
@@ -43,12 +45,12 @@ public class Manager extends Employee {
     @Override
     public String toString() {
         return "Manager{" +
-                "firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", salary=" + getSalary() +
-                ", hireDate=" + getHireDate() +
-                ", staffId=" + getStaffId() +
-                ", bonus=" + getBonus() +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", hireDate=" + hireDate +
+                ", staffId=" + staffId +
+                ", bonus=" + bonus +
                 '}';
     }
 }
