@@ -87,7 +87,13 @@ public class EmployeeManagementCLI {
         final String salaryInput = readLine("Enter salary.");
         final BigDecimal salary = new BigDecimal(salaryInput);
         final String hireDateInput = readLine("Enter hiring date. Use iso format (yyyy-MM-dd). Leave empty to use current date.");
-        final LocalDate hireDate = LocalDate.parse(hireDateInput);
+        final LocalDate hireDate;
+        if (hireDateInput.isBlank()) {
+            hireDate = LocalDate.now();
+        } else {
+            hireDate = LocalDate.parse(hireDateInput);
+        }
+
         final String staffIdInput = readLine("Enter staff id.");
         final long staffId = Long.parseLong(staffIdInput);
         final String manager = readLine("Is this employee a manager? (y/n)");
