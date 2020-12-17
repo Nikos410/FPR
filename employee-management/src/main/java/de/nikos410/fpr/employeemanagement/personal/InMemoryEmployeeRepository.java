@@ -12,6 +12,13 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
+    public Optional<Employee> findByStaffID(long staffId) {
+        return employees.stream()
+                .filter(e -> staffId == e.staffId)
+                .findFirst();
+    }
+
+    @Override
     public Employee findByHighestSalary() {
         return employees.stream()
                 .max(Comparator.comparing(Employee::calculateSalary))
