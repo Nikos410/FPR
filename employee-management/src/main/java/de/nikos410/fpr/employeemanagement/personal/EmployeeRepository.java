@@ -14,7 +14,9 @@ public interface EmployeeRepository {
 
     List<Employee> findDuplicates();
 
-    void save(Employee toSave);
+    void add(Employee newEmployee);
+
+    void update(Employee updatedEmployee);
 
     boolean delete(Employee employee);
 }

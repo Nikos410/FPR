@@ -107,7 +107,7 @@ public class EmployeeManagementCLI {
             newEmployee = new Employee(firstName, lastName, salary, hireDate, staffId);
         }
 
-        employeeRepository.save(newEmployee);
+        employeeRepository.add(newEmployee);
         System.out.println(newEmployee);
     }
 
@@ -176,7 +176,7 @@ public class EmployeeManagementCLI {
 
     private void changeSalary(Employee employee, BigDecimal byPercent) {
         final BigDecimal newSalary = employee.increaseSalary(byPercent);
-        employeeRepository.save(employee);
+        employeeRepository.update(employee);
         System.out.println("New salary: " + newSalary);
     }
 

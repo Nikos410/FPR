@@ -42,16 +42,21 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public void save(Employee toSave) {
+    public void add(Employee newEmployee) {
+        employees.add(newEmployee);
+    }
+
+    @Override
+    public void update(Employee updatedEmployee) {
         final Optional<Employee> existingEmployee = employees.stream()
-                .filter(e -> e.staffId == toSave.staffId)
+                .filter(e -> e.staffId == updatedEmployee.staffId)
                 .findFirst();
 
         if (existingEmployee.isPresent()) {
             final int existingEmployeeIndex = employees.indexOf(existingEmployee.get());
-            employees.set(existingEmployeeIndex, toSave);
+            employees.set(existingEmployeeIndex, updatedEmployee);
         } else {
-            employees.add(toSave);
+            throw new IllegalArgumentException("Employee does not exist yet.");
         }
     }
 
