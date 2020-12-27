@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -86,12 +87,31 @@ public class ClassBrowser implements AutoCloseable {
     }
 
     private String formatConstructor(Constructor<?> constructor) {
-        // TODO
-        return constructor.toString();
+        final StringBuilder builder = new StringBuilder();
+
+        final int modifiers = constructor.getModifiers();
+        if (modifiers != 0) {
+            builder.append(Modifier.toString(modifiers));
+            builder.append(" ");
+        }
+
+        builder.append(constructor.getName());
+        builder.append("(");
+        builder.append(formatConstructorParameters(constructor));
+        builder.append(")");
+
+        return builder.toString();
+    }
+
+    private String formatConstructorParameters(Constructor<?> constructor) {
+        return Arrays.stream(constructor.getParameterTypes())
+                .map(Class::getName)
+                .collect(Collectors.joining(", "));
     }
 
     private String formatMethods(Class<?> theClass) {
         return Arrays.stream(theClass.getDeclaredMethods())
+                .filter(m -> !m.isSynthetic())
                 .map(this::formatMethod)
                 .map(m -> INDENT + m + ";")
                 .collect(Collectors.joining(LINE_BREAK))
@@ -99,8 +119,29 @@ public class ClassBrowser implements AutoCloseable {
     }
 
     private String formatMethod(Method method) {
-        // TODO
-        return method.toString();
+        final StringBuilder builder = new StringBuilder();
+
+        final int modifiers = method.getModifiers();
+        if (modifiers != 0) {
+            builder.append(Modifier.toString(modifiers));
+            builder.append(" ");
+        }
+
+        builder.append(method.getReturnType().getName());
+        builder.append(" ");
+
+        builder.append(method.getName());
+        builder.append("(");
+        builder.append(formatMethodParameters(method));
+        builder.append(")");
+
+        return builder.toString();
+    }
+
+    private String formatMethodParameters(Method method) {
+        return Arrays.stream(method.getParameterTypes())
+                .map(Class::getName)
+                .collect(Collectors.joining(", "));
     }
 
     private String formatFields(Class<?> theClass) {
@@ -112,8 +153,19 @@ public class ClassBrowser implements AutoCloseable {
     }
 
     private String formatField(Field field) {
-        // TODO
-        return field.toString();
+        final StringBuilder builder = new StringBuilder();
+
+        final int modifiers = field.getModifiers();
+        if (modifiers != 0) {
+            builder.append(Modifier.toString(modifiers));
+            builder.append(" ");
+        }
+
+        builder.append(field.getType().getName());
+        builder.append(" ");
+        builder.append(field.getName());
+
+        return builder.toString();
     }
 
     private String formatClassFooter() {
