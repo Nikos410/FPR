@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Employee extends AbstractPerson {
+public class Employee extends AbstractPerson implements Comparable<Employee> {
     protected BigDecimal salary;
     protected LocalDate hireDate;
     protected long staffId;
@@ -28,6 +28,11 @@ public class Employee extends AbstractPerson {
 
     public BigDecimal calculateSalary() {
         return salary;
+    }
+
+    @Override
+    public int compareTo(Employee other) {
+        return calculateSalary().compareTo(other.calculateSalary());
     }
 
     @Override
