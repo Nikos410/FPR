@@ -23,6 +23,11 @@ public class Manager extends Employee {
     }
 
     @Override
+    public void cookCoffee() {
+        System.out.println("Are you kidding me? Just ask my secretary!");
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

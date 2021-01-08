@@ -1,6 +1,7 @@
 package de.nikos410.fpr.employeemanagement.personal;
 
-import de.nikos410.fpr.employeemanagement.personal.coffee.CoffeeDrinking;
+import de.nikos410.fpr.employeemanagement.personal.properties.CoffeeCooker;
+import de.nikos410.fpr.employeemanagement.personal.properties.CoffeeDrinking;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-public class Employee extends AbstractPerson implements Comparable<Employee>, CoffeeDrinking {
+public class Employee extends AbstractPerson implements Comparable<Employee>, CoffeeDrinking, CoffeeCooker {
     protected BigDecimal salary;
     protected LocalDate hireDate;
     protected long staffId;
@@ -44,6 +45,15 @@ public class Employee extends AbstractPerson implements Comparable<Employee>, Co
 
         System.out.println("Aah, that's good.");
         drankLastCoffeeAt = LocalDateTime.now();
+    }
+
+    @Override
+    public void cookCoffee() {
+        if (calculateSalary().compareTo(BigDecimal.valueOf(10_000)) > 0) {
+            System.out.println("No, do it yourself!");
+        } else {
+            System.out.println("Ok.");
+        }
     }
 
     @Override
