@@ -28,7 +28,7 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     @Override
     public Employee findByLowestSalary() {
         return employees.stream()
-                .min(Comparator.comparing(Employee::calculateSalary))
+                .min(Comparator.naturalOrder())
                 .orElseThrow(() -> new IllegalStateException("No employees known."));
     }
 
@@ -63,5 +63,10 @@ public class InMemoryEmployeeRepository implements EmployeeRepository {
     @Override
     public boolean delete(Employee employee) {
         return employees.remove(employee);
+    }
+
+    @Override
+    public void orderBySalary() {
+        Collections.sort(employees);
     }
 }

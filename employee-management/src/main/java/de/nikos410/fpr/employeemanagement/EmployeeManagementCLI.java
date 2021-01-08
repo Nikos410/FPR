@@ -23,7 +23,7 @@ public class EmployeeManagementCLI {
     public void run() {
         while (true) {
             System.out.println("Please tell me what you want to do.");
-            System.out.println("exit | list | lowest-salary | highest-salary | duplicates | add | remove | change-salary");
+            System.out.println("exit | list | lowest-salary | highest-salary | duplicates | add | remove | change-salary | order-by-salary");
             switch (readLine()) {
                 case "exit":
                     System.out.println("Goodbye.");
@@ -48,6 +48,9 @@ public class EmployeeManagementCLI {
                     break;
                 case "change-salary":
                     changeSalary();
+                    break;
+                case "order-by-salary":
+                    orderBySalary();
                     break;
                 default:
                     System.err.println("Unknown command. Please try again.");
@@ -178,6 +181,10 @@ public class EmployeeManagementCLI {
         final BigDecimal newSalary = employee.increaseSalary(byPercent);
         employeeRepository.update(employee);
         System.out.println("New salary: " + newSalary);
+    }
+
+    private void orderBySalary() {
+        employeeRepository.orderBySalary();
     }
 
     private String readLine() {

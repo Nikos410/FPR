@@ -19,4 +19,6 @@ public interface EmployeeRepository {
     void update(Employee updatedEmployee);
 
     boolean delete(Employee employee);
+
+    void orderBySalary();
 }
