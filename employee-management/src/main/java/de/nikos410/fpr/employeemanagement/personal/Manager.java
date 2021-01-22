@@ -5,11 +5,15 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Manager extends Employee {
-    protected BigDecimal bonus;
+    private BigDecimal bonus;
 
     public Manager(String firstName, String lastName, BigDecimal salary, LocalDate hireDate, long staffId, BigDecimal bonus) {
         super(firstName, lastName, salary, hireDate, staffId);
         this.bonus = bonus;
+    }
+
+    BigDecimal getBonus() {
+        return bonus;
     }
 
     public BigDecimal setBonus(BigDecimal bonus) {
