@@ -1,5 +1,6 @@
 package de.nikos410.fpr.employeemanagement;
 
+import de.nikos410.fpr.employeemanagement.gui.EmployeeManagementGui;
 import de.nikos410.fpr.employeemanagement.personal.Employee;
 import de.nikos410.fpr.employeemanagement.personal.EmployeeRepository;
 import de.nikos410.fpr.employeemanagement.personal.InMemoryEmployeeRepository;
@@ -21,41 +22,35 @@ public class EmployeeManagementCLI {
     }
 
     public void run() {
-        while (true) {
+        boolean run;
+        do {
             System.out.println("Please tell me what you want to do.");
-            System.out.println("exit | list | lowest-salary | highest-salary | duplicates | add | remove | change-salary | order-by-salary");
-            switch (readLine()) {
-                case "exit":
-                    System.out.println("Goodbye.");
-                    return;
-                case "list":
-                    list();
-                    break;
-                case "lowest-salary":
-                    lowestSalary();
-                    break;
-                case "highest-salary":
-                    highestSalary();
-                    break;
-                case "duplicates":
-                    duplicates();
-                    break;
-                case "add":
-                    add();
-                    break;
-                case "remove":
-                    remove();
-                    break;
-                case "change-salary":
-                    changeSalary();
-                    break;
-                case "order-by-salary":
-                    orderBySalary();
-                    break;
-                default:
-                    System.err.println("Unknown command. Please try again.");
+            System.out.println("exit | list | lowest-salary | highest-salary | duplicates | add | remove | change-salary | order-by-salary | gui");
+            final String input = readLine();
+            run = handleCommand(input);
+        } while (run);
+
+        System.out.println("Goodbye.");
+    }
+
+    private boolean handleCommand(String command) {
+        switch (command) {
+            case "exit" -> {
+                return false;
             }
+            case "list" -> list();
+            case "lowest-salary" -> lowestSalary();
+            case "highest-salary" -> highestSalary();
+            case "duplicates" -> duplicates();
+            case "add" -> add();
+            case "remove" -> remove();
+            case "change-salary" -> changeSalary();
+            case "order-by-salary" -> orderBySalary();
+            case "gui" -> startGui();
+            default -> System.err.println("Unknown command. Please try again.");
         }
+
+        return true;
     }
 
     private void list() {
@@ -185,6 +180,10 @@ public class EmployeeManagementCLI {
 
     private void orderBySalary() {
         employeeRepository.orderBySalary();
+    }
+
+    private void startGui() {
+        new EmployeeManagementGui().initialize();
     }
 
     private String readLine() {
