@@ -19,9 +19,41 @@ public class Employee extends AbstractPerson implements Comparable<Employee>, Co
 
     public Employee(String firstName, String lastName, BigDecimal salary, LocalDate hireDate, long staffId) {
         super(firstName, lastName);
-        this.salary = salary;
+        this.salary = salary.setScale(4, RoundingMode.HALF_UP);
         this.hireDate = hireDate;
         this.staffId = staffId;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public LocalDate getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public long getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(long staffId) {
+        this.staffId = staffId;
+    }
+
+    public LocalDateTime getDrankLastCoffeeAt() {
+        return drankLastCoffeeAt;
+    }
+
+    public void setDrankLastCoffeeAt(LocalDateTime drankLastCoffeeAt) {
+        this.drankLastCoffeeAt = drankLastCoffeeAt;
     }
 
     public BigDecimal increaseSalary(BigDecimal byPercent) {

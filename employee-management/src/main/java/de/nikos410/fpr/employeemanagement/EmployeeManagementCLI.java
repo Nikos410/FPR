@@ -183,7 +183,7 @@ public class EmployeeManagementCLI {
     }
 
     private void startGui() {
-        new EmployeeManagementGui().initialize();
+        new EmployeeManagementGui(employeeRepository).initialize();
     }
 
     private String readLine() {

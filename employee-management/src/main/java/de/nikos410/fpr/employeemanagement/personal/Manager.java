@@ -12,7 +12,7 @@ public class Manager extends Employee {
         this.bonus = bonus;
     }
 
-    BigDecimal getBonus() {
+    public BigDecimal getBonus() {
         return bonus;
     }
 
